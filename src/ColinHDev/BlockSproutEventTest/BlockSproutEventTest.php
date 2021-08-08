@@ -17,7 +17,8 @@ class BlockSproutEventTest extends PluginBase implements Listener {
 
     public function onBlockSprout(BlockSproutEvent $event) : void {
         $block = $event->getBlock();
-        $newBlock = $event->getNewState();
+        $blockPosition = $block->getPos();
+        $newBlock = $event->getTransaction()->fetchBlockAt($blockPosition->getX(), $blockPosition->getY(), $blockPosition->getZ());
         echo
             $block->getName() . PHP_EOL .
             $newBlock->getName() . PHP_EOL
